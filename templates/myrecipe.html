@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Recipes - For the Love of Cooking</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css"> <!-- Link to external CSS file for additional styling -->
+    <style>
+        body {
+            background-color: #F7F7F7;
+            font-family: 'Inter', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .my-recipes-page {
+            width: 100%;
+            height: 100vh;
+            position: relative;
+            background: #F7F7F7;
+        }
+        .navigation {
+            width: 100%;
+            height: 64px;
+            position: absolute;
+            background: #F7F7F7;
+            border-bottom: 1px solid #E0E0E0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+        .nav-list {
+            display: flex;
+            gap: 32px;
+        }
+        .nav-item {
+            color: black;
+            font-size: 16px;
+            font-weight: 500;
+            line-height: 24px;
+        }
+        .brand {
+            color: black;
+            font-size: 20px;
+            font-weight: 600;
+            line-height: 30px;
+        }
+        .recipe-section {
+            width: 800px;
+            padding: 24px;
+            position: absolute;
+            top: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #FFFFFF;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.04);
+            border-radius: 8px;
+            border: 1px solid #E0E0E0;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .recipe-image {
+            width: 100%;
+            height: auto;
+            background: #F7F7F7;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .recipe-title {
+            color: black;
+            font-size: 32px;
+            font-weight: 800;
+            line-height: 48px;
+            text-align: center;
+        }
+        .recipe-details {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .recipe-detail {
+            color: black;
+            font-size: 20px;
+            font-weight: 600;
+            line-height: 30px;
+        }
+        .recipe-section-title {
+            color: black;
+            font-size: 24px;
+            font-weight: 800;
+            line-height: 36px;
+        }
+        .recipe-text {
+            color: black;
+            font-size: 20px;
+            font-weight: 600;
+            line-height: 30px;
+        }
+        .buttons {
+            display: flex;
+            gap: 12px;
+            margin-top: 24px;
+            justify-content: center;
+        }
+        .button {
+            padding: 8px 16px;
+            background: black;
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+        .button-text {
+            color: #F7F7F7;
+            font-size: 20px;
+            font-weight: 500;
+            line-height: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="my-recipes-page">
+        <div class="navigation">
+            <div class="brand">For the Love of Cooking</div>
+            <div class="nav-list">
+                <a href="{{ url_for('dashboard') }}" class="nav-item">Home</a>
+                <a href="{{ url_for('profilee') }}" class="nav-item">Profile</a>
+                <a href="{{ url_for('my_recipes') }}" class="nav-item">My Recipes</a>
+            </div>
+        </div>
+        <div class="recipe-section">
+            <img class="recipe-image" src="C:\Users\asus\Desktop\aaa.jpeg" alt="Recipe Image" />
+            <div class="recipe-title">Burger</div>
+            <div class="recipe-details">
+                <div class="recipe-detail"><span class="recipe-section-title">Cuisine:</span> America</div>
+                <div class="recipe-detail"><span class="recipe-section-title">Cook Time:</span> 15 min</div>
+                <div class="recipe-detail"><span class="recipe-section-title">Ingredients:</span></div>
+                <div class="recipe-text">1 large egg<br>½ teaspoon salt<br>½ teaspoon ground black pepper<br>1 pound ground beef<br>½ cup fine dry bread crumbs</div>
+                <div class="recipe-detail"><span class="recipe-section-title">Instructions:</span></div>
+                <div class="recipe-text">Preheat an outdoor grill for high heat and lightly oil grate.<br>
+                    2. Whisk together egg, salt, and pepper in a medium bowl.<br>
+                    3. Add ground beef and bread crumbs and mix with your hands or a fork until well blended.<br>
+                    4. Form into four 3/4-inch-thick patties.<br>
+                    5. Place patties on the preheated grill. Cover and cook 6 to 8 minutes per side, or to desired doneness. An instant-read thermometer inserted into the center should read at least 160 degrees F (70 degrees C).
+                </div>
+                <div class="recipe-detail"><span class="recipe-section-title">Comments:</span></div>
+                <div class="recipe-text">...</div>
+                <div class="recipe-detail"><span class="recipe-section-title">Rating:</span> (5) star</div>
+            </div>
+            <div class="buttons">
+                <div class="button">
+                    <div class="button-text">Edit</div>
+                </div>
+                <div class="button">
+                    <div class="button-text">Delete</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Recipe - For the Love of Cooking</title>
+    <!-- Custom CSS -->
+    <style>
+        body {
+            background: #F7F7F7;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .EditRecipe {
+            width: 100%;
+            max-width: 1936px;
+            height: auto;
+            position: relative;
+            background: #F7F7F7;
+            padding: 20px;
+        }
+        .Navigation {
+            width: 100%;
+            height: 64px;
+            position: relative;
+            background: #F7F7F7;
+            border-bottom: 1px #E0E0E0 solid;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+        .Navigation .List {
+            display: flex;
+            gap: 32px;
+        }
+        .Navigation .ForTheLoveOfCooking {
+            font-size: 20px;
+            font-weight: 600;
+        }
+        .Content {
+            width: 100%;
+            max-width: 819px;
+            padding: 20px;
+            background: #FFF;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.04);
+            border-radius: 8px;
+            border: 1px #E0E0E0 solid;
+            margin: 20px auto;
+        }
+        .Content .Title {
+            font-size: 24px;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+        .Content .Input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #E0E0E0;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+        .Content .Button {
+            background: black;
+            color: #FFF;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .Content .Button:hover {
+            background: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="EditRecipe">
+        <div class="Navigation">
+            <div class="List">
+                <div class="Home">Home</div>
+                <div class="Profile">Profile</div>
+                <div class="MyRecipes">My Recipes</div>
+            </div>
+            <div class="ForTheLoveOfCooking">For the love of cooking</div>
+            <div class="Frame2610405"></div>
+        </div>
+        <div class="Content">
+            <div class="EditYourRecipe Title">Edit your Recipe</div>
+            <div class="Cuisine Title">Cuisine :</div>
+            <div class="Frame2610406 Input">Enter cuisine</div>
+            <div class="CookTime Title">Cook Time :</div>
+            <div class="Frame2610407 Input">Enter time</div>
+            <div class="Ingredient Title">Ingredient :</div>
+            <div class="Frame2610408 Input">Enter Ingredients</div>
+            <div class="Instructions Title">Instructions</div>
+            <div class="Frame2610409 Input">Enter Instructions</div>
+            <div class="EditPhoto Title">Edit photo</div>
+            <div class="Frame2610410 Input">Add photo</div>
+            <button class="Button">Save Changes</button>
+        </div>
+    </div>
+</body>
+</html>
