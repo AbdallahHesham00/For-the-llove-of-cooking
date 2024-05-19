@@ -7,7 +7,7 @@
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="styles.css"> <!-- Link to external CSS file for additional styling -->
+    <link rel="stylesheet" href="styles.css">
     <style>
         body {
             background-color: #F7F7F7;
@@ -48,63 +48,16 @@
             font-weight: 600;
             line-height: 30px;
         }
-        .recipe-section {
-            width: 800px;
-            padding: 24px;
-            position: absolute;
-            top: 80px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: #FFFFFF;
-            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.04);
-            border-radius: 8px;
-            border: 1px solid #E0E0E0;
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
-        .recipe-image {
-            width: 100%;
-            height: auto;
-            background: #F7F7F7;
-            border-radius: 8px;
-            overflow: hidden;
-        }
-        .recipe-title {
-            color: black;
-            font-size: 32px;
-            font-weight: 800;
-            line-height: 48px;
+        .placeholder-message {
             text-align: center;
-        }
-        .recipe-details {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
-        .recipe-detail {
-            color: black;
+            margin-top: 50px;
             font-size: 20px;
-            font-weight: 600;
-            line-height: 30px;
+            color: #888;
         }
-        .recipe-section-title {
-            color: black;
-            font-size: 24px;
-            font-weight: 800;
-            line-height: 36px;
-        }
-        .recipe-text {
-            color: black;
-            font-size: 20px;
-            font-weight: 600;
-            line-height: 30px;
-        }
-        .buttons {
+        .button-container {
             display: flex;
-            gap: 12px;
-            margin-top: 24px;
             justify-content: center;
+            margin-top: 20px;
         }
         .button {
             padding: 8px 16px;
@@ -114,12 +67,46 @@
             justify-content: center;
             align-items: center;
             cursor: pointer;
+            color: #FFF;
+            text-decoration: none;
+            margin: 0 10px;
         }
-        .button-text {
-            color: #F7F7F7;
-            font-size: 20px;
-            font-weight: 500;
-            line-height: 30px;
+        .recipe-section {
+            margin: 20px;
+            padding: 20px;
+            background: #FFF;
+            border-radius: 8px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.04);
+        }
+        .recipe-image {
+            width: 100%;
+            height: auto;
+            max-width: 200px;  /* Set max width for the image */
+            max-height: 200px; /* Set max height for the image */
+            border-radius: 8px;
+        }
+        .recipe-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-top: 10px;
+        }
+        .recipe-details {
+            margin-top: 10px;
+        }
+        .recipe-detail {
+            margin-bottom: 5px;
+        }
+        .recipe-section-title {
+            font-weight: 600;
+        }
+        .recipe-text {
+            white-space: pre-wrap;  /* Preserves formatting of text */
+            margin-bottom: 10px;
+        }
+        .buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
         }
     </style>
 </head>
@@ -133,34 +120,44 @@
                 <a href="{{ url_for('my_recipes') }}" class="nav-item">My Recipes</a>
             </div>
         </div>
-        <div class="recipe-section">
-            <img class="recipe-image" src="C:\Users\asus\Desktop\aaa.jpeg" alt="Recipe Image" />
-            <div class="recipe-title">Burger</div>
-            <div class="recipe-details">
-                <div class="recipe-detail"><span class="recipe-section-title">Cuisine:</span> America</div>
-                <div class="recipe-detail"><span class="recipe-section-title">Cook Time:</span> 15 min</div>
-                <div class="recipe-detail"><span class="recipe-section-title">Ingredients:</span></div>
-                <div class="recipe-text">1 large egg<br>½ teaspoon salt<br>½ teaspoon ground black pepper<br>1 pound ground beef<br>½ cup fine dry bread crumbs</div>
-                <div class="recipe-detail"><span class="recipe-section-title">Instructions:</span></div>
-                <div class="recipe-text">Preheat an outdoor grill for high heat and lightly oil grate.<br>
-                    2. Whisk together egg, salt, and pepper in a medium bowl.<br>
-                    3. Add ground beef and bread crumbs and mix with your hands or a fork until well blended.<br>
-                    4. Form into four 3/4-inch-thick patties.<br>
-                    5. Place patties on the preheated grill. Cover and cook 6 to 8 minutes per side, or to desired doneness. An instant-read thermometer inserted into the center should read at least 160 degrees F (70 degrees C).
+        {% if recipes %}
+            {% for recipe in recipes %}
+            <div class="recipe-section">
+                {% if recipe.ImageUrl %}
+                    <img class="recipe-image" src="{{ url_for('static', filename=recipe.ImageUrl) }}" alt="Recipe Image" />
+                {% else %}
+                    <img class="recipe-image" src="{{ url_for('static', filename='uploads/placeholder.png') }}" alt="Placeholder Image" />
+                {% endif %}
+
+                <div class="recipe-title">{{ recipe.Title }}</div>
+                <div class="recipe-details">
+                    <div class="recipe-detail"><span class="recipe-section-title">Cuisine:</span> {{ recipe.Cuisine }}</div>
+                    <div class="recipe-detail"><span class="recipe-section-title">Cook Time:</span> {{ recipe.CookTime }}</div>
+                    <div class="recipe-detail"><span class="recipe-section-title">Ingredients:</span></div>
+                    <div class="recipe-text">{{ recipe.Ingredients | safe }}</div>
+                    <div class="recipe-detail"><span class="recipe-section-title">Instructions:</span></div>
+                    <div class="recipe-text">{{ recipe.Instructions | safe }}</div>
+                    <div class="recipe-detail"><span class="recipe-section-title">Comments:</span></div>
+                    <div class="recipe-text">{{ recipe.Description }}</div>
+                    <div class="recipe-detail"><span class="recipe-section-title">Rating:</span> ({{ recipe.rating }}) star</div>
                 </div>
-                <div class="recipe-detail"><span class="recipe-section-title">Comments:</span></div>
-                <div class="recipe-text">...</div>
-                <div class="recipe-detail"><span class="recipe-section-title">Rating:</span> (5) star</div>
+                <div class="buttons">
+                    <form action="{{ url_for('edit_recipe', recipe_id=recipe.id) }}" method="GET">
+                        <button type="submit" class="button"><div class="button-text">Edit</div></button>
+                    </form>
+                    <form action="{{ url_for('delete_recipe', recipe_id=recipe.id) }}" method="POST">
+                        <button type="submit" class="button"><div class="button-text">Delete</div></button>
+                    </form>
+                </div>
+                
             </div>
-            <div class="buttons">
-                <div class="button">
-                    <div class="button-text">Edit</div>
-                </div>
-                <div class="button">
-                    <div class="button-text">Delete</div>
-                </div>
+            {% endfor %}
+        {% else %}
+            <div class="placeholder-message">You don't have any recipes yet.</div>
+            <div class="button-container">
+                <a href="{{ url_for('add_recipe') }}" class="button">Add Recipe</a>
             </div>
-        </div>
+        {% endif %}
     </div>
 </body>
 </html>
