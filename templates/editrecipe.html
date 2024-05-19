@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Recipe - For the Love of Cooking</title>
+    <!-- Bootstrap CSS for better styling -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
     <style>
         body {
@@ -80,27 +82,37 @@
     <div class="EditRecipe">
         <div class="Navigation">
             <div class="List">
-                <div class="Home">Home</div>
-                <div class="Profile">Profile</div>
-                <div class="MyRecipes">My Recipes</div>
+                <a href="{{ url_for('dashboard') }}" class="Home">Home</a>
+                <a href="{{ url_for('profilee') }}" class="Profile">Profile</a>
+                <a href="{{ url_for('my_recipes') }}" class="MyRecipes">My Recipes</a>
             </div>
             <div class="ForTheLoveOfCooking">For the love of cooking</div>
             <div class="Frame2610405"></div>
         </div>
         <div class="Content">
             <div class="EditYourRecipe Title">Edit your Recipe</div>
-            <div class="Cuisine Title">Cuisine :</div>
-            <div class="Frame2610406 Input">Enter cuisine</div>
-            <div class="CookTime Title">Cook Time :</div>
-            <div class="Frame2610407 Input">Enter time</div>
-            <div class="Ingredient Title">Ingredient :</div>
-            <div class="Frame2610408 Input">Enter Ingredients</div>
-            <div class="Instructions Title">Instructions</div>
-            <div class="Frame2610409 Input">Enter Instructions</div>
-            <div class="EditPhoto Title">Edit photo</div>
-            <div class="Frame2610410 Input">Add photo</div>
-            <button class="Button">Save Changes</button>
+            <form action="{{ url_for('edit_recipe') }}" method="POST" enctype="multipart/form-data">
+                {% if recipe %}
+                <input type="hidden" name="recipe_id" value="{{ recipe.id }}">
+                {% endif %}
+                <div class="Cuisine Title">Cuisine:</div>
+                <input type="text" name="cuisine" class="Frame2610406 Input" value="{{ recipe.Cuisine if recipe else '' }}" required>
+                <div class="CookTime Title">Cook Time:</div>
+                <input type="text" name="cook_time" class="Frame2610407 Input" value="{{ recipe.CookTime if recipe else '' }}" required>
+                <div class="Ingredient Title">Ingredients:</div>
+                <textarea name="ingredients" class="Frame2610408 Input" rows="4" required>{{ recipe.Ingredients if recipe else '' }}</textarea>
+                <div class="Instructions Title">Instructions:</div>
+                <textarea name="instructions" class="Frame2610409 Input" rows="4" required>{{ recipe.Instructions if recipe else '' }}</textarea>
+                <div class="EditPhoto Title">Edit photo:</div>
+                <input type="file" name="photo" class="Frame2610410 Input">
+                <button type="submit" class="Button">{{ 'Save Changes' if recipe else 'Add Recipe' }}</button>
+            </form>
         </div>
     </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
